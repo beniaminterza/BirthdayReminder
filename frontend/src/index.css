@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    background-color: #9b5de5;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.btn {
+    @apply px-1.5em py-0.75em;
+}
+
+header {
+    background: #ffddf144 0% 0% no-repeat padding-box;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+
+.backgroundGlass {
+    background: #ffffff83 0% 0% no-repeat padding-box;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+.backgroundGlass2 {
+    background: #ffffff54 0% 0% no-repeat padding-box;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+.backgroundGlass3 {
+    background: #ffffffa8 0% 0% no-repeat padding-box;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+
+.whiteSVG {
+    filter: invert(100%) sepia(0%) saturate(803%) hue-rotate(150deg)
+        brightness(109%) contrast(101%);
+}
+
+.circle {
+    border-radius: 50%;
+    z-index: -10;
+}
+
+.greenTop {
+    background: #000;
+    width: 25rem;
+    height: 25rem;
+    position: fixed;
+    background: rgb(54, 255, 134);
+    background: radial-gradient(
+        circle,
+        rgba(54, 255, 134, 1) 0%,
+        rgba(155, 93, 229, 1) 100%
+    );
+    opacity: 40%;
+    filter: blur(4rem);
+    top: -10rem;
+    left: 33%;
+}
+
+.blueBottom {
+    background: #000;
+    width: 28rem;
+    height: 28rem;
+    position: fixed;
+    background: #2d3ed6;
+    background: radial-gradient(circle, #2d3ed6 0%, #9f6ee1 100%);
+    opacity: 66%;
+    filter: blur(4rem);
+    bottom: -7rem;
+    left: 1rem;
+}
+
+.redMiddle {
+    background: #000;
+    width: 45rem;
+    height: 45rem;
+    position: fixed;
+    background: #e64c4c;
+    background: radial-gradient(circle, #e64c4c 0%, #ae4ce6 100%);
+    opacity: 71%;
+    filter: blur(6rem);
+    top: 60%;
+    left: 68%;
+    transform: translate(-50%, -50%);
+}
+
+.yellowBottom {
+    background: #000;
+    width: 30rem;
+    height: 30rem;
+    position: fixed;
+    background: #fee440;
+    background: radial-gradient(circle, #fee440 0%, rgba(155, 93, 229, 1) 100%);
+    opacity: 55%;
+    filter: blur(4rem);
+    bottom: 0;
+    right: 15%;
+    transform: translate(50%, 50%);
+}
+
+input {
+    background: rgba(255, 255, 255, 0.596);
+}
+
+input:focus {
+    box-shadow: 0 0 6px rgb(168, 146, 187);
+    background: rgba(255, 255, 255, 0.801);
+}
+
+.centerY {
+    transform: translateY(-50%);
+}
+
+.centerX {
+    transform: translateX(-50%);
+}
+
+.centerXY {
+    transform: translate(-50%, -50%);
+}
+
+.blur {
+    background: #00000028 0% 0% no-repeat padding-box;
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+}
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

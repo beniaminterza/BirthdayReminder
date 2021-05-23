@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Birthday from "./Birthday";
+import Birthdays from "./Birthdays";
 import Add from "./Add";
 import BlurBackground from "./BlurBackground";
 import axios from "axios";
@@ -8,12 +8,42 @@ type Props = {
     username: string;
 };
 
+type birthday = {
+    Vorname: string;
+    Nachname: string;
+    Geburtstag: string;
+    birthdayThisYear: string;
+    birthdayNextYear: string;
+    nextBirthday: string;
+    age: number;
+    daysLeft: number;
+};
+
 const Home: React.FC<Props> = ({ username }) => {
     const [seeAdd, setSeeAdd] = useState(false);
+    const [birthdays, setBirthdays] = useState(Array());
 
     useEffect(() => {
+        let array: birthday[][];
         axios.get(`http://localhost:4000/birthday/${username}`).then((res) => {
-            console.log(res);
+            let j = 0;
+            array = [];
+            for (let i = 0; i < res.data.length; i++) {
+                if (
+                    i > 0 &&
+                    res.data[i].daysLeft === res.data[i - 1].daysLeft
+                ) {
+                    console.log("if");
+                    array[j - 1].push(res.data[i]);
+                } else {
+                    console.log("else");
+                    array[j] = [];
+                    array[j].push(res.data[i]);
+                    j += 1;
+                }
+            }
+            console.log(array);
+            setBirthdays(array);
         });
     }, []);
 
@@ -33,14 +63,14 @@ const Home: React.FC<Props> = ({ username }) => {
                 ) : null}
             </div>
             <div>
-                <p className="text-white text-xl mb-2">In 1 Day - 10.10.2021</p>
-                <div className="grid grid-flow-col grid-cols-3 gap-8">
-                    <Birthday
-                        age={11}
-                        birthday="10.10.2016"
-                        name="Mathias brandlechner"
-                    />
-                </div>
+                {birthdays.map((element) => {
+                    return (
+                        <Birthdays
+                            birthdays={element}
+                            key={element[0].PersonNr}
+                        />
+                    );
+                })}
             </div>
         </main>
     );

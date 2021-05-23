@@ -78,7 +78,7 @@ app.get("/birthday/:username", (req, res) => {
     const { username } = req.params;
 
     con.query(
-        "SELECT person.Vorname, person.Nachname, person.Geburtstag, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR AS birthdayThisYear, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) + 1 YEAR AS birthdayNextYear, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ELSE person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) + 1 YEAR END AS nextBirthday, TIMESTAMPDIFF( YEAR, person.Geburtstag, CURRENT_DATE ) AS age, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ) ELSE TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) +1 YEAR ) END AS daysLeft FROM `person` JOIN benutzer ON benutzer.UserNr = person.UsernameFK WHERE benutzer.Username = ? ORDER BY CASE WHEN birthdayThisYear >= CURRENT_DATE THEN birthdayThisYear ELSE birthdayNextYear END",
+        "SELECT person.PersonNr,person.Vorname, person.Nachname, person.Geburtstag, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR AS birthdayThisYear, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) + 1 YEAR AS birthdayNextYear, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ELSE person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag)) + 1 YEAR END AS nextBirthday, TIMESTAMPDIFF( YEAR, person.Geburtstag, CURRENT_DATE ) AS age, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ) ELSE TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) +1 YEAR ) END AS daysLeft FROM `person` JOIN benutzer ON benutzer.UserNr = person.UsernameFK WHERE benutzer.Username = ? ORDER BY CASE WHEN birthdayThisYear >= CURRENT_DATE THEN birthdayThisYear ELSE birthdayNextYear END",
         [username],
         (err, result) => {
             if (err) {
@@ -90,10 +90,10 @@ app.get("/birthday/:username", (req, res) => {
                 for (let i = 0; i < result.length; i++) {
                     console.log(result[i].Vorname);
                 }
+                res.send(result);
             }
         }
     );
-    res.send(false);
 });
 
 app.post("/register", (req, res) => {

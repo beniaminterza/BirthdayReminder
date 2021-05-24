@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const LandigPage: React.FC = () => {
     return (
         <main className="m-auto w-1/9 max-w-1400 flex gap-20 flex-1 pb-16 items-center">
-            <div className="text-white w-1/2 flex flex-col gap-8">
+            <div className="text-white w-full md:w-1/2 flex flex-col gap-8">
                 <h3 className="text-lightWhite text-xl">
                     Don't dissappoint your friends again
                 </h3>
@@ -23,7 +23,7 @@ const LandigPage: React.FC = () => {
                     Register for Free
                 </Link>
             </div>
-            <div className="w-1/2">
+            <div className="w-1/2 hidden md:block">
                 <img
                     src={Illustration}
                     alt="Gift Illustration"

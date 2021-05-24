@@ -24,6 +24,18 @@ body {
     @apply px-1.5em py-0.75em;
 }
 
+.deleteParent:hover .delete {
+    display: block;
+    animation: cssAnimation 0s 0.5s forwards;
+    visibility: hidden;
+}
+
+@keyframes cssAnimation {
+    to {
+        visibility: visible;
+    }
+}
+
 header {
     background: #ffddf144 0% 0% no-repeat padding-box;
     opacity: 1;
@@ -48,6 +60,15 @@ header {
     opacity: 1;
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
+}
+.backgroundGlass4 {
+    background: #ffffff63 0% 0% no-repeat padding-box;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+.backgroundGlass4:hover {
+    background: #ffffff88 0% 0% no-repeat padding-box;
 }
 
 .whiteSVG {

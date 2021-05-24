@@ -5,6 +5,7 @@ const port = 4000;
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const pageElementsAmount = 10;
 
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
@@ -55,9 +56,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/birthday", (req, res) => {
-    let body = req.body;
     const { firstName, lastName, birthday, username } = req.body;
-    console.log(body);
 
     con.query(
         "INSERT INTO person (Vorname, Nachname, Geburtstag, UsernameFK) SELECT ? as Vorname, ? as Nachname, ? as Geburtstag, benutzer.UserNr FROM benutzer WHERE benutzer.Username = ?",
@@ -67,31 +66,43 @@ app.post("/birthday", (req, res) => {
                 res.send({ err: err });
                 return;
             } else {
-                console.log(result);
+                res.send(true);
             }
         }
     );
-    res.send(false);
 });
 
-app.get("/birthday/:username", (req, res) => {
-    const { username } = req.params;
-
+app.get("/birthday/:username/:page", (req, res) => {
+    const { username, page } = req.params;
+    console.log(page);
     con.query(
-        "SELECT person.PersonNr,person.Vorname, person.Nachname, person.Geburtstag, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR AS birthdayThisYear, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) + 1 YEAR AS birthdayNextYear, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ELSE person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag)) + 1 YEAR END AS nextBirthday, TIMESTAMPDIFF( YEAR, person.Geburtstag, CURRENT_DATE ) AS age, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ) ELSE TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) +1 YEAR ) END AS daysLeft FROM `person` JOIN benutzer ON benutzer.UserNr = person.UsernameFK WHERE benutzer.Username = ? ORDER BY CASE WHEN birthdayThisYear >= CURRENT_DATE THEN birthdayThisYear ELSE birthdayNextYear END",
-        [username],
+        "SELECT person.PersonNr,person.Vorname, person.Nachname, person.Geburtstag, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR AS birthdayThisYear, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) + 1 YEAR AS birthdayNextYear, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ELSE person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag)) + 1 YEAR END AS nextBirthday, TIMESTAMPDIFF( YEAR, person.Geburtstag, CURRENT_DATE ) AS age, CASE WHEN person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR >= CURRENT_DATE THEN TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) YEAR ) ELSE TIMESTAMPDIFF( DAY, CURRENT_DATE, person.Geburtstag + INTERVAL( YEAR(CURRENT_DATE) - YEAR(person.Geburtstag) ) +1 YEAR ) END AS daysLeft FROM `person` JOIN benutzer ON benutzer.UserNr = person.UsernameFK WHERE benutzer.Username = ? ORDER BY CASE WHEN birthdayThisYear >= CURRENT_DATE THEN birthdayThisYear ELSE birthdayNextYear END LIMIT ? OFFSET ?",
+        [username, pageElementsAmount, page * pageElementsAmount],
         (err, result) => {
             if (err) {
                 res.send({ err: err });
                 return;
             } else {
-                console.log(result);
-                const map = new Map();
-                for (let i = 0; i < result.length; i++) {
-                    console.log(result[i].Vorname);
-                }
-                res.send(result);
+                let isLastPage;
+                if (result.length < pageElementsAmount) isLastPage = true;
+                else isLastPage = false;
+                res.send({ birthdays: result, isLastPage: isLastPage });
             }
+        }
+    );
+});
+
+app.delete("/birthday/:id", (req, res) => {
+    const { id } = req.params;
+    con.query(
+        "DELETE FROM person WHERE person.PersonNr = ?",
+        [id],
+        (err, result) => {
+            if (err) {
+                res.send({ err: err });
+                return;
+            }
+            res.send(true);
         }
     );
 });

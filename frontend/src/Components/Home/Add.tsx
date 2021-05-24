@@ -1,13 +1,15 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { ImCross } from "react-icons/im";
 import axios from "axios";
+import "react-notifications-component/dist/theme.css";
 
 type Props = {
     setSeeAdd: Dispatch<SetStateAction<boolean>>;
     username: string;
+    setPage: Dispatch<SetStateAction<number>>;
 };
 
-const Add: React.FC<Props> = ({ setSeeAdd, username }) => {
+const Add: React.FC<Props> = ({ setSeeAdd, username, setPage }) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [birthday, setBirthday] = useState("");
@@ -36,6 +38,7 @@ const Add: React.FC<Props> = ({ setSeeAdd, username }) => {
             })
             .then((res) => {
                 console.log(res.data);
+                setPage(0);
                 setSeeAdd(false);
             });
     }

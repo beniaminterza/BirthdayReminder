@@ -35,19 +35,6 @@ const Header: React.FC<Props> = ({
                 <Link to="/home">
                     <img src={Gift} alt="Gift" className="h-10 whiteSVG" />
                 </Link>
-                <div className=" flex gap-2">
-                    <HeaderElement text="Home" link="/home" curPage={curPage} />
-                    <HeaderElement
-                        text="Add Birthday"
-                        link="/add"
-                        curPage={curPage}
-                    />
-                    <HeaderElement
-                        text="All Birthdays"
-                        link="/all"
-                        curPage={curPage}
-                    />
-                </div>
                 {!isLoggedIn ? (
                     <div className="flex gap-2">
                         <Link to="/login" className="btn bg-violet rounded-st">

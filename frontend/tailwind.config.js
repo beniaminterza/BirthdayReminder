@@ -7,9 +7,10 @@ module.exports = {
                 violet: "#9b5de5",
                 violetDark: "#894ad4",
                 pink: "#f15bb5",
-                lightWhite: "#bdc1c7",
+                lightWhite: "#f0f0f0",
                 lightLightWhite: "#ebebeb",
                 blue: "#00BBF9",
+                yellow: "#fcfc60",
             },
             spacing: {
                 "1/9": "90%",

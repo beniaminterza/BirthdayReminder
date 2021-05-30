@@ -11,7 +11,7 @@
 }
 
 body {
-    background-color: #9b5de5;
+    background-color: #ffccd7;
 }
 
 #root {
@@ -37,7 +37,7 @@ body {
 }
 
 header {
-    background: #ffddf144 0% 0% no-repeat padding-box;
+    background: #fff1f944 0% 0% no-repeat padding-box;
     opacity: 1;
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -76,6 +76,10 @@ header {
         brightness(109%) contrast(101%);
 }
 
+.birthday:hover div:first-child {
+    background-color: #ec9ebc;
+}
+
 .circle {
     border-radius: 50%;
     z-index: -10;
@@ -90,7 +94,7 @@ header {
     background: radial-gradient(
         circle,
         rgba(54, 255, 134, 1) 0%,
-        rgba(155, 93, 229, 1) 100%
+        rgb(193, 231, 162) 100%
     );
     opacity: 40%;
     filter: blur(4rem);
@@ -103,8 +107,8 @@ header {
     width: 28rem;
     height: 28rem;
     position: fixed;
-    background: #2d3ed6;
-    background: radial-gradient(circle, #2d3ed6 0%, #9f6ee1 100%);
+    background: #d62d81;
+    background: radial-gradient(circle, #d62d81 0%, #fcc5c9 100%);
     opacity: 66%;
     filter: blur(4rem);
     bottom: -7rem;
@@ -113,39 +117,25 @@ header {
 
 .redMiddle {
     background: #000;
-    width: 45rem;
-    height: 45rem;
+    width: 34rem;
+    height: 34rem;
     position: fixed;
     background: #e64c4c;
-    background: radial-gradient(circle, #e64c4c 0%, #ae4ce6 100%);
-    opacity: 71%;
+    background: radial-gradient(circle, #e64c4c 0%, #eecc82 100%);
+    opacity: 60%;
     filter: blur(6rem);
-    top: 60%;
-    left: 68%;
+    top: 50%;
+    left: 70%;
     transform: translate(-50%, -50%);
 }
 
-.yellowBottom {
-    background: #000;
-    width: 30rem;
-    height: 30rem;
-    position: fixed;
-    background: #fee440;
-    background: radial-gradient(circle, #fee440 0%, rgba(155, 93, 229, 1) 100%);
-    opacity: 55%;
-    filter: blur(4rem);
-    bottom: 0;
-    right: 15%;
-    transform: translate(50%, 50%);
-}
-
 input {
-    background: rgba(255, 255, 255, 0.596);
+    background: rgba(214, 199, 199, 0.596);
 }
 
 input:focus {
-    box-shadow: 0 0 6px rgb(168, 146, 187);
-    background: rgba(255, 255, 255, 0.801);
+    box-shadow: 0 0 6px rgb(187, 146, 146);
+    background: rgba(255, 248, 248, 0.452);
 }
 
 .centerY {

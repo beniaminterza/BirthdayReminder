@@ -81,7 +81,7 @@ const Register: React.FC<Props> = ({
                 Already have an account?{" "}
                 <Link
                     to="/login"
-                    className="text-violet font-medium hover:text-violetDark underline"
+                    className="text-pinkDark font-medium underline"
                 >
                     Log In
                 </Link>
@@ -110,7 +110,7 @@ const Register: React.FC<Props> = ({
             <p className="w-80 text-red-600 mt-2 text-center">{error}</p>
             <button
                 type="submit"
-                className="btn mt-2 relative focus:outline-none bg-violet hover:bg-violetDark text-white w-full rounded-st"
+                className="btn mt-2 relative focus:outline-none bg-pink hover:bg-cremeDark w-full rounded-st"
             >
                 Register
                 <div className="absolute right-4 top-1/2 centerY">

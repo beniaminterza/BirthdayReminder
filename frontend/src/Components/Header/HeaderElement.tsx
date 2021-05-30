@@ -11,7 +11,7 @@ const HeaderElement: React.FC<Props> = ({ text, link, curPage }) => {
     return (
         <Link
             to={link}
-            className={`btn rounded-st ${curPage === link ? "bg-violet" : ""}`}
+            className={`btn rounded-st ${curPage === link ? "bg-creme" : ""}`}
         >
             {text}
         </Link>

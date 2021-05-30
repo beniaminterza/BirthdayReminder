@@ -69,7 +69,7 @@ const Login: React.FC<Props> = ({
                 Are you new?{" "}
                 <Link
                     to="/register"
-                    className="text-violet font-medium hover:text-violetDark underline"
+                    className="text-pinkDark font-medium underline"
                 >
                     Register
                 </Link>
@@ -91,11 +91,11 @@ const Login: React.FC<Props> = ({
             <p className="w-full text-red-600 mt-2 text-center">{error}</p>
             <button
                 type="submit"
-                className="btn mt-2 relative focus:outline-none bg-violet hover:bg-violetDark text-white w-full rounded-st"
+                className="btn mt-2 relative focus:outline-none bg-pink hover:bg-cremeDark w-full rounded-st"
             >
                 Log In
                 <div className="absolute right-4 top-1/2 centerY">
-                    <HiArrowRight size="20px" />
+                    <HiArrowRight size="20px" color="black" />
                 </div>
             </button>
         </form>

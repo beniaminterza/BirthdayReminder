@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 
 const App: React.FC = () => {
-    const [curPage, setCurPage] = useState("/home");
+    const [curPage, setCurPage] = useState("/");
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [loaded, setLoaded] = useState(false);
     const [username, setUsername] = useState("");
@@ -55,7 +55,7 @@ const App: React.FC = () => {
             )}
             {loaded ? (
                 <Switch>
-                    <Route path={["", "/home"]} exact>
+                    <Route path="/" exact>
                         {isLoggedIn ? (
                             <Home username={username} />
                         ) : (

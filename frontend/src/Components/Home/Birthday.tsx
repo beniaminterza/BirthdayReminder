@@ -8,15 +8,24 @@ type Props = {
     name: string;
     id: number;
     setPage: Dispatch<SetStateAction<number>>;
+    setReload: Dispatch<SetStateAction<boolean>>;
 };
 
-const Birthday: React.FC<Props> = ({ age, birthday, name, id, setPage }) => {
+const Birthday: React.FC<Props> = ({
+    age,
+    birthday,
+    name,
+    id,
+    setPage,
+    setReload,
+}) => {
     function deleteHandler(): void {
         axios.delete(`http://localhost:4000/birthday/${id}`);
         setPage(0);
+        setReload((prev) => !prev);
     }
     return (
-        <div className="w-full backgroundGlass4 text-black rounded-st flex gap-2 deleteParent">
+        <div className="w-full backgroundGlass4 birthday text-black rounded-st flex gap-2 deleteParent">
             <div className="bg-pink rounded-st left-0 top-0 h-full p-8 text-center">
                 <h1 className="text-5xl font-medium">{age}</h1>
                 <p>years old</p>

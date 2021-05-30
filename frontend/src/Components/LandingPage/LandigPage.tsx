@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const LandigPage: React.FC = () => {
     return (
         <main className="m-auto w-1/9 max-w-1400 flex gap-20 flex-1 pb-16 items-center">
-            <div className="text-white w-full md:w-1/2 flex flex-col gap-8">
-                <h3 className="text-lightWhite text-xl">
+            <div className="text-black w-full md:w-1/2 flex flex-col gap-8">
+                <h3 className="text-lightWhite text-xl -mb-4">
                     Don't dissappoint your friends again
                 </h3>
                 <h1 className="text-6xl font-medium">
@@ -18,7 +18,7 @@ const LandigPage: React.FC = () => {
                 </h2>
                 <Link
                     to="/register"
-                    className="btn bg-pink text-black rounded-st w-max text-xl mb-20"
+                    className="btn bg-white text-pinkDark rounded-st w-max text-xl mb-20"
                 >
                     Register for Free
                 </Link>

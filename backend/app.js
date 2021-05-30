@@ -25,21 +25,23 @@ app.use(cookieParser());
 app.use(
     session({
         key: "userId",
-        secret: "myLittleSessionSecret",
+        secret: process.env.secret,
         resave: "false",
         saveUninitialized: false,
         cookie: {
             secure: false, //true wenn https
-            expires: 60 * 60 * 24,
+            expires: 60 * 60 * 24 * 30,
         },
     })
 );
 
+console.log("Host " + process.env.DB_HOST);
+
 var con = mysql.createConnection({
-    host: "localhost",
+    host: "mysql_server",
     database: "brem",
-    user: "root",
-    password: "",
+    user: "benni",
+    password: "secret",
 });
 
 con.connect(function (err) {

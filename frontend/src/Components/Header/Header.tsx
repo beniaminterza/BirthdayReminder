@@ -31,18 +31,18 @@ const Header: React.FC<Props> = ({
 
     return (
         <header>
-            <div className="flex text-white m-auto w-1/9 max-w-1400 justify-between items-center py-5">
-                <Link to="/home">
-                    <img src={Gift} alt="Gift" className="h-10 whiteSVG" />
+            <div className="flex text-black m-auto w-1/9 max-w-1400 justify-between items-center py-5">
+                <Link to="/">
+                    <img src={Gift} alt="Gift" className="h-10" />
                 </Link>
                 {!isLoggedIn ? (
                     <div className="flex gap-2">
-                        <Link to="/login" className="btn bg-violet rounded-st">
+                        <Link to="/login" className="btn bg-pink rounded-st">
                             Login
                         </Link>
                         <Link
                             to="/register"
-                            className="btn rounded-st bg-white text-violet"
+                            className="btn rounded-st bg-white text-pinkDark"
                         >
                             Register
                         </Link>
@@ -52,7 +52,7 @@ const Header: React.FC<Props> = ({
                         <p className="font-medium">{username}</p>
                         <button
                             onClick={logoutHandler}
-                            className="btn focus:outline-none rounded-st bg-white text-violet"
+                            className="btn focus:outline-none rounded-st bg-white text-black"
                         >
                             Logout
                         </button>

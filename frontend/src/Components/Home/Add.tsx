@@ -7,9 +7,10 @@ type Props = {
     setSeeAdd: Dispatch<SetStateAction<boolean>>;
     username: string;
     setPage: Dispatch<SetStateAction<number>>;
+    setReload: Dispatch<SetStateAction<boolean>>;
 };
 
-const Add: React.FC<Props> = ({ setSeeAdd, username, setPage }) => {
+const Add: React.FC<Props> = ({ setSeeAdd, username, setPage, setReload }) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [birthday, setBirthday] = useState("");
@@ -38,6 +39,7 @@ const Add: React.FC<Props> = ({ setSeeAdd, username, setPage }) => {
             })
             .then((res) => {
                 console.log(res.data);
+                setReload((prev) => !prev);
                 setPage(0);
                 setSeeAdd(false);
             });
@@ -83,7 +85,7 @@ const Add: React.FC<Props> = ({ setSeeAdd, username, setPage }) => {
             <p className="w-full text-red-600 mt-4 text-center">{error}</p>
             <button
                 type="submit"
-                className="bg-violet text-white mt-2 rounded-st py-3 hover:bg-violetDark focus:outline-none"
+                className="bg-pink text-dark mt-2 rounded-st py-3 hover:bg-cremeDark focus:outline-none"
             >
                 Add
             </button>
